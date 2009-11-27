@@ -1,3 +1,5 @@
+// Gary Haran => gary@talkerapp.com
+// This code is released under MIT licence
 (function($){
   var replacer = function(finder, replacement, element) {
     if (!finder || typeof replacement === 'undefined') {
