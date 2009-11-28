@@ -29,6 +29,11 @@
   <!-- Put sample/test html here -->
   <div id="sample">
     <div id="test" style="display: none;">Tentative tent is content with tending to that.</div>
+    
+    <ul style="display: none;">
+      <li>testing</li>
+      <li>testing</li>
+    </ul>
   </div>
   
 </div>
@@ -60,6 +65,12 @@
     
     testReplaceRegexpGloballyWithString: function(){ with(this){ // leet speak wannabes beware
       assertEqual('10tative event is con10t with 10ding to that.', $('#test').replace(/ten/ig, '10').html())
+    }},
+    
+    testReplaceMultipleObjects: function(){ with(this){
+      $('li').replace('testing', 'validating');
+      assertEqual('validating', $('li:first').html());
+      assertEqual('validating', $('li:last').html());
     }}
   }); 
 // ]]>

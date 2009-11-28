@@ -26,7 +26,6 @@
         var wrap = document.createElement('span');
         var frag = document.createDocumentFragment();
         
-        wrap.className = 'findAndReplace';
         wrap.innerHTML = html;
         
         while (wrap.firstChild) {
@@ -43,9 +42,8 @@
   }
   
   $.fn.replace = function(finder, replacement){
-    if (this.length) {
-      replacer(finder, replacement, $(this).get(0))
-    }
-    return this;
+    return this.each(function(){
+      replacer(finder, replacement, $(this).get(0));
+    })
   } 
 })(jQuery);
