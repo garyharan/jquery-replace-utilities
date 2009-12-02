@@ -13,7 +13,7 @@
     while (len--) {
       var node = childNodes[len];
       
-      if (node.nodeType === 1 && ('html,head,style,title,link,meta,script,object,iframe,pre,'.indexOf(node.nodeName.toLowerCase()) === -1)) {
+      if (node.nodeType === 1 && ('html,head,style,title,link,meta,script,object,iframe,pre,a,'.indexOf(node.nodeName.toLowerCase()) === -1)) {
         replacer(finder, replacement, node);
       }
       
@@ -41,9 +41,9 @@
     }
   }
   
-  $.fn.replace = function(finder, replacement){
+  $.fn.replace = function(finder, replacement) {
     return this.each(function(){
       replacer(finder, replacement, $(this).get(0));
-    })
-  } 
+    });
+  }
 })(jQuery);

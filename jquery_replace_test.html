@@ -34,6 +34,8 @@
       <li>testing</li>
       <li>testing</li>
     </ul>
+    
+    <p id="test_p">My anchor should be outside my <a href="#anchor">anchor</a>.</p>
   </div>
   
 </div>
@@ -71,6 +73,10 @@
       $('li').replace('testing', 'validating');
       assertEqual('validating', $('li:first').html());
       assertEqual('validating', $('li:last').html());
+    }},
+    
+    testReplaceDoesNotBreakAnchors: function(){ with(this){
+      assert('My <a href="#">replacement</a> should be outside my <a href="#anchor">anchor</a>.', $('#test_p').replace(/anchor/g, '<a href=\"#\">replacement</a>').html());
     }}
   }); 
 // ]]>
