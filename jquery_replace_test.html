@@ -36,6 +36,8 @@
     </ul>
     
     <p id="test_p">My anchor should be outside my <a href="#anchor">anchor</a>.</p>
+    
+    <p id="test_black_list">Black Listing is fun to do for <a href="#">fun fun fun</a></p>
   </div>
   
 </div>
@@ -77,6 +79,10 @@
     
     testReplaceDoesNotBreakAnchors: function(){ with(this){
       assert('My <a href="#">replacement</a> should be outside my <a href="#anchor">anchor</a>.', $('#test_p').replace(/anchor/g, '<a href=\"#\">replacement</a>').html());
+    }},
+    
+    testReplaceAnchorsWithBlackList: function(){ with(this){
+      assert('Black Listing is great to do for <a href="#">great great great</a>', $('#test_black_list').replace(/fun/g, 'great').html());
     }}
   }); 
 // ]]>

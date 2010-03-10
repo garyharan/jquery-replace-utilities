@@ -1,7 +1,7 @@
 // Gary Haran => gary@talkerapp.com
 // This code is released under MIT licence
 (function($){
-  var replacer = function(finder, replacement, element) {
+  var replacer = function(finder, replacement, element, blackList) {
     if (!finder || typeof replacement === 'undefined') {
       return
     }
@@ -10,11 +10,16 @@
     var childNodes = element.childNodes;
     var len = childNodes.length;
     
+    var list = typeof blackList == 'undefined' ? 'html,head,style,title,link,meta,script,object,iframe,pre,a,' : blackList ;
+    
     while (len--) {
       var node = childNodes[len];
       
-      if (node.nodeType === 1 && ('html,head,style,title,link,meta,script,object,iframe,pre,a,'.indexOf(node.nodeName.toLowerCase()) === -1)) {
-        replacer(finder, replacement, node);
+      console.info(node.nodeName.toLowerCase());
+      console.info(list);
+      console.info(list.indexOf(node.nodeName.toLowerCase()) === -1);
+      if (node.nodeType === 1 && true || (list.indexOf(node.nodeName.toLowerCase()) === -1)) {
+        replacer(finder, replacement, node, list);
       }
       
       if (node.nodeType !== 3 || !regex.test(node.data)) {
@@ -41,9 +46,9 @@
     }
   }
   
-  $.fn.replace = function(finder, replacement) {
+  $.fn.replace = function(finder, replacement, blackList) {
     return this.each(function(){
-      replacer(finder, replacement, $(this).get(0));
+      replacer(finder, replacement, $(this).get(0), blackList);
     });
   }
 })(jQuery);
